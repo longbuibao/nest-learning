@@ -14,3 +14,15 @@ nest generate controller messages/messages --flat
 - `@Body()` Get the information out of the body of the request.
 
 #### DTO aka Data Transfer Object
+
+# Services
+
+- It's a class
+- #1 place to put any business logic
+- Uses one or more repositories to find of store data
+
+# Repositories
+
+- It's a class
+- #1 place to put storage-related logic
+- Usually ends up being a TypeORM entity, a Mongoose schema, or similar

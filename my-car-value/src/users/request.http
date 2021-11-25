@@ -1,5 +1,8 @@
-### List all messages
-GET http://localhost:3000/messages
+### Get a particular user
+GET http://localhost:3000/auth/2
+
+### Get a particular user
+GET http://localhost:3000/auth?email=vuthuydung@gmail.com
 
 ### Create a new user
 

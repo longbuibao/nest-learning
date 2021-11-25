@@ -1,8 +1,8 @@
 ### Get a particular user
-GET http://localhost:3000/auth/1
+GET http://localhost:3000/auth/5
 
 ### Get a particular user
-GET http://localhost:3000/auth?email=vuthuydung@gmail.com
+GET http://localhost:3000/auth?email=thisisanew@gmail.com
 
 ### Delete a particular user
 DELETE  http://localhost:3000/auth/3
@@ -17,8 +17,12 @@ Content-Type: application/json
 	"password": "11011010"
 }
 
-### Get a particular message
-
-GET  http://localhost:3000/messages/521
-
 ### Update a user
+
+PATCH  http://localhost:3000/auth/5
+Content-Type: application/json
+
+{
+	"email": "thisisanew@gmail.com",
+	"password": "thisismypassword"
+}

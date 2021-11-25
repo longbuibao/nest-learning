@@ -1,5 +1,5 @@
 ### Get a particular user
-GET http://localhost:3000/auth/5
+GET http://localhost:3000/auth/12
 
 ### Get a particular user
 GET http://localhost:3000/auth?email=thisisanew@gmail.com

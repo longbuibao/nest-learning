@@ -1,8 +1,11 @@
 ### Get a particular user
-GET http://localhost:3000/auth/2
+GET http://localhost:3000/auth/1
 
 ### Get a particular user
 GET http://localhost:3000/auth?email=vuthuydung@gmail.com
+
+### Delete a particular user
+DELETE  http://localhost:3000/auth/3
 
 ### Create a new user
 

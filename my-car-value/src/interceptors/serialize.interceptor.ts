@@ -11,6 +11,8 @@ import { plainToClass } from 'class-transformer'
 import { UserDto } from 'src/users/dtos/user.dto'
 
 export class SerializeInterceptor implements NestInterceptor {
+  constructor(private dto: any) {}
+
   intercept(
     context: ExecutionContext,
     next: CallHandler<any>,
@@ -20,10 +22,14 @@ export class SerializeInterceptor implements NestInterceptor {
     //Looks like side effect in react
     return next.handle().pipe(
       map((data: any) => {
-        return plainToClass(UserDto, data, {
+        return plainToClass(this.dto, data, {
           excludeExtraneousValues: true,
         })
       }),
     )
   }
+}
+
+export function Serialize(dto: any) {
+  return UseInterceptors(new SerializeInterceptor(dto))
 }

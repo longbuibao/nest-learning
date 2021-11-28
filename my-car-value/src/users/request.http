@@ -1,5 +1,5 @@
 ### Get a particular user
-GET http://localhost:3000/auth/4
+GET http://localhost:3000/auth/121212
 
 ### Get a particular user
 GET http://localhost:3000/auth?email=thisisanew@gmail.com
@@ -25,4 +25,14 @@ Content-Type: application/json
 {
 	"email": "thisisanew@gmail.com",
 	"password": "thisismypassword"
+}
+
+### login user
+
+POST http://localhost:3000/auth/signin
+Content-Type: application/json
+
+{
+	"email": "longbuibao@gmail.com",
+	"password": "1101101d0"
 }

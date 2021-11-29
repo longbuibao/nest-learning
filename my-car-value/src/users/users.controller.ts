@@ -12,12 +12,12 @@ import {
 } from '@nestjs/common'
 
 import { UserDto } from './dtos/user.dto'
-
 import { CreateUserDto } from './dtos/create-user.dto'
 import { UpdateUserDto } from './dtos/update-user.dto'
 import { UsersService } from './users.service'
 import { Serialize } from 'src/interceptors/serialize.interceptor'
 import { AuthService } from './auth.service'
+import { CurrentUser } from './decorators/current-user.decorator'
 
 @Controller('auth')
 @Serialize(UserDto)
@@ -28,8 +28,8 @@ export class UsersController {
   ) {}
 
   @Get('/whoami')
-  whoAmI(@Session() session: any) {
-    return this.usersService.findOne(session.userId)
+  whoAmI(@CurrentUser() user: any) {
+    return user
   }
 
   @Post('/signup')

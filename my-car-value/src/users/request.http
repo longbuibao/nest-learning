@@ -33,6 +33,9 @@ POST http://localhost:3000/auth/signin
 Content-Type: application/json
 
 {
-	"email": "hdi@gmail.com",
+	"email": "longbuibao@gmail.com",
 	"password": "11011010"
 }
+
+### Who am i
+GET http://localhost:3000/auth/whoami 

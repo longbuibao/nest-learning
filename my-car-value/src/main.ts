@@ -8,7 +8,7 @@ async function bootstrap() {
 
   app.use(
     cookieSession({
-      keys: [''],
+      keys: ['z'],
     }),
   )
 

@@ -14,5 +14,3 @@
 - An entity file, defines a single kind of resource or a single kind of thing that we want to store inside our application.
 - List all properties, that it suppose to have.
 - After create entity files, we're going to feed them into Nest. Nest and TypeORM will work together to create a _repository_ for us.
-
-school work

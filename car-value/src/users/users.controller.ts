@@ -8,6 +8,7 @@ import {
   Query,
   Delete,
   Session,
+  ForbiddenException,
 } from '@nestjs/common';
 import { CreateUserDto } from './dtos/create-user.dto';
 import { UpdateUserDto } from './dtos/update-user.dto';
@@ -23,6 +24,17 @@ export class UsersController {
     private userService: UsersService,
     private authService: AuthService,
   ) {}
+
+  @Get('/whoami')
+  whoami(@Session() session: any) {
+    // if (!session.userId) throw new ForbiddenException('Who are you?');
+    return this.userService.findOne(session.userId);
+  }
+
+  @Post('/signout')
+  signOut(@Session() session: any) {
+    session.userId = null;
+  }
 
   @Post('/signup')
   async createUser(@Body() body: CreateUserDto, @Session() session: any) {

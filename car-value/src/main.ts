@@ -20,5 +20,4 @@ async function bootstrap() {
 
   await app.listen(3000);
 }
-console.log("go");
 bootstrap();

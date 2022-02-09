@@ -8,7 +8,7 @@ import {
   Query,
   Delete,
   Session,
-  ForbiddenException,
+  UseGuards,
 } from '@nestjs/common';
 import { CreateUserDto } from './dtos/create-user.dto';
 import { UpdateUserDto } from './dtos/update-user.dto';
@@ -17,6 +17,9 @@ import { UserDto } from './dtos/outgoing-user.dto';
 import { Serialize } from '../interceptors/serialize.interceptor';
 import { AuthService } from './auth.service';
 
+import { CurrentUser } from './decorators/current-user.decorator';
+import { User } from './user.entity';
+import { AuthGuard } from 'src/guards/auth.guards';
 @Controller('auth')
 @Serialize(UserDto)
 export class UsersController {
@@ -25,10 +28,15 @@ export class UsersController {
     private authService: AuthService,
   ) {}
 
+  // @Get('/whoami')
+  // whoami(@Session() session: any) {
+  //   // if (!session.userId) throw new ForbiddenException('Who are you?');
+  //   return this.userService.findOne(session.userId);
+  // }
   @Get('/whoami')
-  whoami(@Session() session: any) {
-    // if (!session.userId) throw new ForbiddenException('Who are you?');
-    return this.userService.findOne(session.userId);
+  @UseGuards(AuthGuard)
+  whoami(@CurrentUser() user: User) {
+    return user;
   }
 
   @Post('/signout')

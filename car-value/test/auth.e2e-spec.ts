@@ -31,19 +31,20 @@ describe('Authentication System', () => {
       });
   });
 
-  it('handles a singup request', () => {
-    const email = 'blong1102@gmail.com';
-    return request(app.getHttpServer())
+  it('signup and get current logged in user', async () => {
+    const email = 'asdf@gmail.com';
+    const res = await request(app.getHttpServer())
       .post('/auth/signup')
-      .send({
-        email,
-        password: 'kfjdslafjsdklf',
-      })
-      .expect(201)
-      .then((res) => {
-        const { id, email } = res.body;
-        expect(id).toBeDefined();
-        expect(email).toEqual(email);
-      });
+      .send({ email, password: 'asdf' })
+      .expect(201);
+
+    const cookie = res.get('Set-Cookie');
+
+    const { body } = await request(app.getHttpServer())
+      .get('/auth/whoami')
+      .set('Cookie', cookie)
+      .expect(200);
+
+    expect(body.email).toEqual(email);
   });
 });
